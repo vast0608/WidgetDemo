@@ -47,5 +47,18 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([[url absoluteString] hasPrefix:@"WidgetDemo"])
+    {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"你点击了%@按钮",[url host]] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"好的👌" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:confirmAction];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+        
+    }
+    return  YES;
+}
 
 @end
